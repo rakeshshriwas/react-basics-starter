@@ -7,6 +7,8 @@ class App extends Component {
     this.state = {
       first_name: "Rakesh",
       last_name: "Shriwas",
+
+      fruits: ["Apple", "Orange", "banana"]
     }
 
     this.updateData = this.updateData.bind(this);
@@ -24,8 +26,14 @@ class App extends Component {
       <div style={{ textAlign: "center" }}>
         <p>First Name : {this.state.first_name}</p>
         <p>Last Name : {this.state.last_name}</p>
-
         <button onClick={this.updateData}>Update Data</button>
+        <br/>
+        <h3>How to print list</h3>
+        {this.state.fruits.map( (fruit, index) => {
+            return <p key={index}>{fruit}</p>
+          })
+        }
+
       </div>
     );
   }
