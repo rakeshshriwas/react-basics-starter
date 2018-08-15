@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import Details from './Details';
+import AddToDo from './AddTodo';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      first_name: "Rakesh",
-      last_name: "Shriwas"
-    }
-
-    this.updateData = this.updateData.bind(this);
+  state = {
+    todos: [
+      {
+        taskName: "First task"
+      },
+      {
+        taskName: "Second task"
+      },
+      {
+        taskName: "Third task"
+      }
+    ]
   }
 
-  updateData() {
+  addToDoState = addToDoTask => {
+    const newToDo = this.state.todos.concat({
+      taskName: addToDoTask
+    });
+
     this.setState({ 
-        first_name: "Manoj",
-        last_name: "Pawar"
-      });
+      todos: newToDo
+     });
   }
 
   render() {
     return (
-      <Details first_name={this.state.first_name} last_name={this.state.last_name} updateData={this.updateData}/>
+      <div style={{width: 500, margin: '50px auto'}}>
+        <AddToDo addToDoState={this.addToDoState}/>
+        <ul>
+          {this.state.todos.map((todo, index) => {
+            return <li key={index}>{todo.taskName}</li>
+          })}
+        </ul>
+      </div>
     );
   }
 }
